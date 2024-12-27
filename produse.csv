@@ -1,0 +1,32 @@
+ID, Produs, Tip, Marimi, Preturi(lei), Stoc
+1,Espresso,Cafea,Small,5,20
+2,Espresso Dublu,Cafea,Medium,8,0
+3,Espresso Macchiato,Cafea,Medium,11,0
+4,Caffe Americano,Cafea,Small Medium Big,7 9 11,20 20 20
+5,Caffe Latte,Cafea,Small Medium Big,8 10 12,20 20 20
+6,Iced Caffe Latte,Cafea,Small Medium Big,10 12 14,20 20 18 
+7,Cappucino,Cafea,Small Medium Big,8 10 12,18 20 20 
+8,Caffe Mocha,Cafea,Small Medium Big,9 11 13,20 20 18 
+9,Iced Caffe Mocha,Cafea,Small Medium Big,11 13 15,20 15 20 
+10,White Chocolate Mocha,Cafea,Small Medium Big,12 14 16,20 19 20 
+11,Latte Macchiato,Cafea,Small Medium Big,9 11 13,20 20 20
+12,Caramel Macchiato,Cafea,Small Medium Big,11 13 15,19 18 20 
+13,Iced Caramel Macchiato,Cafea,Small Medium Big,12 14 16,20 20 20
+14,Flat White,Cafea,Small Medium Big,10 12 14,20 20 15 
+15,Cold Brew,Cafea,Small Medium Big,10 12 14,20 20 20
+16,Coffee Frappuccino,Cafea,Small Medium Big,10 12 14,20 20 16 
+17,Caramel Frappuccino,Cafea,Small Medium Big,11 13 15,20 20 20
+18,White Chocolate Mocha Frappuccino,Cafea,Small Medium Big,12 14 16,20 20 20
+19,Toffee Nut Frappuccino,Cafea,Small Medium Big,12 14 16,20 16 17 
+1,Ciocolata Calda,Ciocolata Calda,Small Medium Big,10 12 14,20 20 20
+2,Ciocolata Calda Alba,Ciocolata Calda,Small Medium Big,11 13 15,18 16 20 
+1,Ceai Verde,Ceai,Medium,9,20 20 20
+2,Ceai Negru,Ceai,Medium,9,20 20 20
+3,Ceai de Musetel,Ceai,Medium,9,20 20 20
+4,Ceai de Menta,Ceai,Medium,9,17 20 20 
+5,Ceai de Citrice,Ceai,Medium,9,15 20 20 
+6,Ceai de Fructe de Padure,Ceai,Medium,9,20 20 20
+1,Limonada,Limonada,Big,10,20 20 20
+2,Limonada cu Mango,Limonada,Big,12,20 20 20
+3,Limonada cu Capsuni,Limonada,Big,12,20 20 20
+4,Limonada cu Menta,Limonada,Big,12,20 20 20
