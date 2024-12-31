@@ -6,15 +6,37 @@
 
 using namespace std;
 
+/*
+----------------
+    CONTINUT
+1. CLASA "EvenimentSpecial"
+2. CLASA "Date"
+- Clasa pentru extragerea datei curente
+3. MAIN
+- Meniul aplicatiei de gestionare al evenimentelor speciale
+*/
+
 class EvenimentSpecial
 {
+    /*
+    -------------------
+        INCAPSULARE
+    - Pretul evenimentului special va fi un atribut privat
+    -------------------
+    */
 private:
     int pret; // Costul evenimentului
+
 public:
     string eveniment; // Titlul evenimentului
     string data;      // Data in care va avea loc evenimentul
     float durata;     // Durata evenimentului in ore
 
+    /*
+   -------------------
+       CONSTRUCTOR
+   -------------------
+   */
     EvenimentSpecial(string eveniment, string data, float durata)
     {
         this->eveniment = eveniment;
@@ -22,11 +44,21 @@ public:
         this->durata = durata;
     }
 
+    /*
+    --------------
+        SETTER
+    --------------
+    */
     void setPret(int pret)
     {
         this->pret = pret;
     }
 
+    /*
+    --------------
+        GETTER
+    --------------
+    */
     int getPret()
     {
         return this->pret;
@@ -70,6 +102,15 @@ public:
     }
 };
 
+/*
+------------
+    MAIN
+- Aici este meniul "aplicatiei" de gestionare al evenimentelor speciale
+- Se alege orasul unde este situata cafeneaua
+- Se introduc datele referitoare la evenimentul special care va fi organizat in cafenea
+- Se introduce evenimentul special in baza de date (fisierul CSV)
+------------
+*/
 int main()
 {
     cout << "--- ORGANIZARE EVENIMENTE SPECIALE ---" << endl;

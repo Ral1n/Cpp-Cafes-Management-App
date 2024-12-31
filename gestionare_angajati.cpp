@@ -4,6 +4,7 @@
 #include <sstream>
 
 using namespace std;
+
 /*
 ----------------
     CONTINUT
@@ -27,10 +28,10 @@ using namespace std;
 class Angajat
 {
     /*
-    ---------------------
+    -------------------
         INCAPSULARE
     - Unele dintre atributele clasei Angajat vor fi private (informatiile personale)
-    ---------------------
+    -------------------
     */
 private:
     string nume;
