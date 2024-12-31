@@ -21,6 +21,7 @@ using namespace std;
     ABSTRACTIZARE
 - Clasa Angajat este o clasa abstracta
 - Va servi ca model pentru toate functiile angajatilor
+- Se va folosi Factory Design Pattern pentru a crea functiile angajatilor
 ---------------------
 */
 class Angajat
@@ -28,7 +29,7 @@ class Angajat
     /*
     ---------------------
         INCAPSULARE
-    - Unele dintre atributele clasei Angajat vor fi private
+    - Unele dintre atributele clasei Angajat vor fi private (informatiile personale)
     ---------------------
     */
 private:
@@ -61,6 +62,12 @@ public:
     int stop_tura;    // ora la care se termina tura unui angajat
     string zile_tura; // zilele in care angajatul va lucra
 
+    /*
+    ---------------
+        GETTERE
+    - Functii de get pentru toate atributele private
+    ---------------
+    */
     string getNume()
     {
         return this->nume;
@@ -101,9 +108,9 @@ public:
     virtual void adaugaAngajat(string oras) = 0;
 
     /*
-    ------------------
-        DESTRUCTOR
-    ------------------
+    --------------------------
+        DESTRUCTOR VIRTUAL
+    --------------------------
     */
     virtual ~Angajat() = default;
 };
@@ -182,6 +189,7 @@ void stergeAngajat(string nume, string prenume)
 ------------------------------------------
     MOSTENIRE + FACTORY DESIGN PATTERN
 - Clasele Barista, Manager si Ospatar mostenesc clasa abstracta Angajat
+- Vor fi create folosind Factory Design Pattern
 ------------------------------------------
 */
 class Barista : public Angajat
@@ -201,7 +209,7 @@ public:
     /*
     -------------------
         POLIMORFISM
-    -
+    - Functia se suprascrie diferit in fiecare subclasa
     -------------------
     */
     void adaugaAngajat(string oras) override
@@ -292,6 +300,11 @@ public:
     }
 };
 
+/*
+----------------------------------------------
+    CLASE specifice FACTORY DESIGN PATTERN
+----------------------------------------------
+*/
 class AngajatFactory
 {
 public:
@@ -355,6 +368,8 @@ class OspatarFactory : public AngajatFactory
     }
 };
 
+// Functie prin care se afiseaza statusului angajatilor fiecarei cafenele din tara
+// Cati angajati lipsa are cafeneaua conform schemei prezentate mai jos
 void statusAngajati(string oras)
 {
     fstream fin;
@@ -463,7 +478,7 @@ void statusAngajati(string oras)
 /*
 ------------
     MAIN
-- Aici este meniul "aplicatiei" de gestionare a angajatilor
+- Aici este meniul "aplicatiei" de gestionare al angajatilor
 - Se alege orasul unde este situata cafeneaua
 - Fiecare cafenea trebuie sa aiba:
     - 1 manager de cafenea
