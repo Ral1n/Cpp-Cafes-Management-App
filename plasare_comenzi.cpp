@@ -6,19 +6,44 @@
 
 using namespace std;
 
+/*
+----------------
+    CONTINUT
+1. CLASA "Client"
+2. FUNCTII
+3. MAIN
+- Meniul aplicatiei de plasare al unei comenzi
+*/
+
 class Client
 {
+    /*
+    -------------------
+        INCAPSULARE
+    - Numele si prenumele clientului vor fi private
+    -------------------
+    */
 private:
     string nume;
     string prenume;
 
 public:
+    /*
+    --------------
+        SETTER
+    --------------
+    */
     void setClient(string nume, string prenume)
     {
         this->nume = nume;
         this->prenume = prenume;
     }
 
+    /*
+    ---------------
+        GETTERE
+    ---------------
+    */
     string getNume()
     {
         return this->nume;
@@ -29,6 +54,7 @@ public:
         return this->prenume;
     }
 
+    // Functie prin care se adauga o comanda realizata de client in CSV
     void adaugaClientSiComandaInCSV(vector<string> comanda, float pret_comanda)
     {
         fstream fout;
@@ -51,7 +77,9 @@ public:
              << ctime(&timestamp) << "\n";
     }
 
-    int nrComenziPanaLaReducere()
+    // Functie care returneaza numarul de comenzi efectuate de respectivul client
+    // si care afiseaza numarul de comenzi pana la urmatoarea reducere
+    int nrComenziReducere()
     {
         fstream fin;
 
@@ -110,6 +138,11 @@ public:
         return count;
     }
 
+    /*
+    ------------------
+        DESTRUCTOR
+    ------------------
+    */
     ~Client() {}
 };
 
@@ -120,8 +153,15 @@ public:
 - "plasareComanda" -> Functie prin care se plaseaza o comanda a unui produs din cafenea
                    -> Return type-ul este int deoarece pe langa mesajele afisate,
                       functia returneaza pretul produsului comandat (x cantitate)
+- "plasareProdus" -> Functie prin care se returneaza, sub forma de string, cantitatea, marimea si numele unui produs comandat
 - "modificareStoc" -> Functie prin care se modifica in CSV stocul unui produs imediat ce acesta a fost comandat
 - "adaugareStoc" -> Functie prin care se adauga in CSV o cantitate la stocul produsului selectat
+- "startZi" -> Functie prin care se initializeaza o zi calendaristica in CSV
+- "verificareStartZi" -> Se verifica daca s-a facut deja initializarea zilei calendaristice
+- "adaugareVenitCheltuieliProfituri" -> Se adauga in fisierul CSV urmatoarele:
+        -> Venitul in urma unei comenzi (pretul intreg al comenzii)
+        -> Cheltuielile de productie ale unei comenzi
+        -> Profitul obtinut in urma unei comenzi (venit - cheltuieli de productie)
 ---------------
 */
 
@@ -351,8 +391,6 @@ string plasareProdus(string TIP, int ID, string MARIME, int cantitate)
     };
 
     fin.close();
-
-    return 0;
 }
 
 void modificareStoc(string TIP, int ID, string MARIME, int cantitate)
@@ -588,7 +626,10 @@ void adaugareStoc(string TIP, int ID, string MARIME, int cantitate)
 
 /*
 Prin aceasta functie se adauga in CSV la inceputul fiecarei zile:
-Data, 0 Venituri, 0 Cost produse, 1160 Salarii/zi, 100 Chirie/zi, 50 Intretinere/zi, 0 Profituri
+Data zilei, 0 Venituri, 0 Cost produse, 1360 Salarii/zi, 100 Chirie/zi, 50 Intretinere/zi, -1510 Profituri
+    - Am calculat salariile angajatilor pe zi
+    - Am presupus chiria fiecarei locatii de 3000 lei/luna
+    - Am presupus cheltuielile pe intretinere pt. fiecare locatie de 1500 lei/luna
 */
 void startZi(char data[], string oras)
 {
@@ -607,7 +648,7 @@ void startZi(char data[], string oras)
 }
 
 /*
-Prin aceasta functie se verificare daca datele specifice inceputului unei zi
+Prin aceasta functie se verifica daca datele specifice inceputului unei zi
 au fost adaugate deja in fisierul CSV
 */
 bool verificareStartZi(char data[])
@@ -746,7 +787,7 @@ void adaugareVenitCheltuieliProfituri(char DATA[], string ORAS, float venit, flo
     MAIN
 - Aici este meniul "aplicatiei" de plasare a unei comenzi de catre un client
 - Se alege orasul unde se afla clientul
-- Se cer numele si prenumele clientului pentru a fi introduse in baza de date (CSV),
+- Se cer numele si prenumele clientului pentru a fi introduse in baza de date (fisierul CSV),
 ca ulterior sa se verifice fidelitatea acestuia pentru a se aplica reducerea corespunzatoare:
     - sub 5 comenzi -> 0% reducere
     - intre 5 si 10 comenzi -> 5% reducere
@@ -757,12 +798,8 @@ ca ulterior sa se verifice fidelitatea acestuia pentru a se aplica reducerea cor
 - Se afiseaza pretul comenzii dupa fiecare produs adaugat pe lista
 - Dupa finalizarea comenzii, pretul total este adaugat in fisierul CSV la categoria "Venituri"
 - Costul de productie al fiecarei bauturi este de jumatate din pretul acesteia (Ex: produs->12lei => cost productie->6lei)
-- La categoria "Cheltuia" vor intra:
-    - La inceputul fiecarei zile, cafeneaua va porni cu un stoc de 10 produse din fiecare produs
-    - "Venituri" / 2 -> costul de productie al produselor vandute
-    - 1160 lei -> salariile angajatilor
-    - x lei -> alte cheltuieli zilnice: chirie, apa, curent, etc
-- La categoria "Profituri" se adauga: "Venituri" - "Cheltuieli"
+- Se adauga comanda si clientul in baza de date (fisierul CSV)
+- Se adauga veniturile, cheltuielile de productie si profiturile in urma unei comenzi
 ------------
 */
 int main()
@@ -801,7 +838,7 @@ int main()
 
     Client client;
     client.setClient(nume, prenume);
-    int nr_comenzi = client.nrComenziPanaLaReducere();
+    int nr_comenzi = client.nrComenziReducere();
 
     vector<string> comanda;
 

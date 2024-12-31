@@ -64,6 +64,7 @@ public:
         return this->pret;
     }
 
+    // Functie prin care se adauga evenimentul special in fisierul CSV
     void adaugaEvenimentLaCSV(string oras)
     {
         fstream fout;
@@ -76,6 +77,13 @@ public:
              << this->durata << ","
              << getPret() << "\n";
     }
+
+    /*
+    ------------------
+        DESTRUCTOR
+    ------------------
+    */
+    ~EvenimentSpecial() {}
 };
 
 class Date
