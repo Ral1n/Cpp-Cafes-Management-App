@@ -1,0 +1,44 @@
+ID, Product, Type, Size, Price(lei), Stock
+1,Espresso,Coffee,Small,5,20
+2,Double Espresso,Coffee,Medium,8,20
+3,Espresso Macchiato,Coffee,Medium,11,20
+4,Caffe Americano,Coffee,Small Medium Big,7 9 11,20 20 20
+5,Caffe Latte,Coffee,Small Medium Big,8 10 12,20 20 20
+6,Iced Caffe Latte,Coffee,Small Medium Big,10 12 14,20 20 18 
+7,Cappuccino,Coffee,Small Medium Big,8 10 12,18 20 20 
+8,Caffe Mocha,Coffee,Small Medium Big,9 11 13,20 20 18 
+9,Iced Caffe Mocha,Coffee,Small Medium Big,11 13 15,20 15 20 
+10,White Chocolate Mocha,Coffee,Small Medium Big,12 14 16,20 19 20 
+11,Latte Macchiato,Coffee,Small Medium Big,9 11 13,20 20 20
+12,Caramel Macchiato,Coffee,Small Medium Big,11 13 15,19 18 20 
+13,Iced Caramel Macchiato,Coffee,Small Medium Big,12 14 16,20 20 20
+14,Flat White,Coffee,Small Medium Big,10 12 14,20 20 15 
+15,Cold Brew,Coffee,Small Medium Big,10 12 14,20 20 20
+16,Coffee Frappuccino,Coffee,Small Medium Big,10 12 14,20 20 16 
+17,Caramel Frappuccino,Coffee,Small Medium Big,11 13 15,20 20 20
+18,White Chocolate Mocha Frappuccino,Coffee,Small Medium Big,12 14 16,20 20 20
+19,Toffee Nut Frappuccino,Coffee,Small Medium Big,12 14 16,20 16 17 
+1,Hot Chocolate,Hot Chocolate,Small Medium Big,10 12 14,20 20 20
+2,White Hot Chocolate,Hot Chocolate,Small Medium Big,11 13 15,18 16 20 
+1,Green Tea,Tea,Medium,9,20 20 20
+2,Black Tea,Tea,Medium,9,20 20 20
+3,Chamomile Tea,Tea,Medium,9,20 20 20
+4,Mint Tea,Tea,Medium,9,17 20 20 
+5,Citrus Tea,Tea,Medium,9,15 20 20 
+6,Berry Tea,Tea,Medium,9,20 20 20
+1,Lemonade,Lemonade,Big,10,20 20 20
+2,Mango Lemonade,Lemonade,Big,12,20 20 20
+3,Strawberry Lemonade,Lemonade,Big,12,20 20 20
+4,Mint Lemonade,Lemonade,Big,12,20 20 20
+1,Cookie,Dessert,OneSize,4,20
+2,Butter Croissant,Dessert,OneSize,5,20
+3,Chocolate Croissant,Dessert,OneSize,7,20
+4,Cinnamon Roll,Dessert,OneSize,10,20
+5,Banana Bread,Dessert,OneSize,10,20
+6,Chocolate Donut,Dessert,OneSize,5,20
+7,Raspberry Donut,Dessert,OneSize,5,20
+8,Chocolate Muffin,Dessert,OneSize,5,20
+9,Blueberry Muffin,Dessert,OneSize,5,20
+1,Chicken Schnitzel Sandwich,Sandwich,OneSize,12,20
+2,Bacon Sandwich,Sandwich,OneSize,11,20
+3,Salmon and Avocado Sandwich,Sandwich,OneSize,14,20

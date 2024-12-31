@@ -1,7 +1,7 @@
 ID, Produs, Tip, Marimi, Preturi(lei), Stoc
 1,Espresso,Cafea,Small,5,20
-2,Espresso Dublu,Cafea,Medium,8,0
-3,Espresso Macchiato,Cafea,Medium,11,0
+2,Espresso Dublu,Cafea,Medium,8,20
+3,Espresso Macchiato,Cafea,Medium,11,20
 4,Caffe Americano,Cafea,Small Medium Big,7 9 11,20 20 20
 5,Caffe Latte,Cafea,Small Medium Big,8 10 12,20 20 20
 6,Iced Caffe Latte,Cafea,Small Medium Big,10 12 14,20 20 18 
@@ -30,3 +30,15 @@ ID, Produs, Tip, Marimi, Preturi(lei), Stoc
 2,Limonada cu Mango,Limonada,Big,12,20 20 20
 3,Limonada cu Capsuni,Limonada,Big,12,20 20 20
 4,Limonada cu Menta,Limonada,Big,12,20 20 20
+1,Cookie,Desert,OneSize,4,20
+2,Croissant cu Unt,Desert,OneSize,5,20
+3,Croissant cu Ciocolată,Desert,OneSize,7,20
+4,Cinnamon Roll,Desert,OneSize,10,20
+5,Banana Bread,Desert,OneSize,10,20
+6,Gogoasa cu Ciocolata,Desert,OneSize,5,20
+7,Gogoasa cu Zmeura,Desert,OneSize,5,20
+8,Briosa cu Ciocolata,Desert,OneSize,5,20
+9,Briosa cu Afine,Desert,OneSize,5,20
+1,Sandwich cu Snițel de Pui,Sandwich,OneSize,12,20
+2,Sandwich cu Bacon,Sandwich,OneSize,11,20
+3,Sandwich cu Somon si Avocado,Sandwich,OneSize,14,20
