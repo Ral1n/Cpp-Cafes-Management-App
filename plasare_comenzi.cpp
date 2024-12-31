@@ -165,11 +165,18 @@ public:
 ---------------
 */
 
-void showMenu(string TIP)
+void showMenu(string TIP, string limba)
 {
     fstream fin;
 
-    fin.open("produse.csv", ios::in);
+    if (limba == "Romana")
+    {
+        fin.open("produse_ro.csv", ios::in);
+    }
+    else
+    {
+        fin.open("produse_eng.csv", ios::in);
+    }
 
     int ID;
     string produs, tip;
@@ -245,11 +252,18 @@ void showMenu(string TIP)
     fin.close();
 }
 
-int plasareComanda(string TIP, int ID, string MARIME, int cantitate)
+int plasareComanda(string limba, string TIP, int ID, string MARIME, int cantitate)
 {
     fstream fin;
 
-    fin.open("produse.csv", ios::in);
+    if (limba == "Romana")
+    {
+        fin.open("produse_ro.csv", ios::in);
+    }
+    else
+    {
+        fin.open("produse_eng.csv", ios::in);
+    }
 
     int id;
     string produs, tip;
@@ -334,11 +348,18 @@ int plasareComanda(string TIP, int ID, string MARIME, int cantitate)
     return 0;
 }
 
-string plasareProdus(string TIP, int ID, string MARIME, int cantitate)
+string plasareProdus(string limba, string TIP, int ID, string MARIME, int cantitate)
 {
     fstream fin;
 
-    fin.open("produse.csv", ios::in);
+    if (limba == "Romana")
+    {
+        fin.open("produse_ro.csv", ios::in);
+    }
+    else
+    {
+        fin.open("produse_eng.csv", ios::in);
+    }
 
     int id;
     string produs, tip;
@@ -397,7 +418,7 @@ void modificareStoc(string TIP, int ID, string MARIME, int cantitate)
 {
     fstream fin, fout;
 
-    fin.open("produse.csv", ios::in);
+    fin.open("produse_ro.csv", ios::in);
 
     fout.open("produsenew.csv", ios::out);
 
@@ -501,9 +522,9 @@ void modificareStoc(string TIP, int ID, string MARIME, int cantitate)
     fin.close();
     fout.close();
 
-    remove("produse.csv");
+    remove("produse_ro.csv");
 
-    rename("produsenew.csv", "produse.csv");
+    rename("produsenew.csv", "produse_ro.csv");
 }
 
 /*
@@ -515,7 +536,7 @@ void adaugareStoc(string TIP, int ID, string MARIME, int cantitate)
 {
     fstream fin, fout;
 
-    fin.open("produse.csv", ios::in);
+    fin.open("produse_ro.csv", ios::in);
 
     fout.open("produsenew.csv", ios::out);
 
@@ -619,9 +640,9 @@ void adaugareStoc(string TIP, int ID, string MARIME, int cantitate)
     fin.close();
     fout.close();
 
-    remove("produse.csv");
+    remove("produse_ro.csv");
 
-    rename("produsenew.csv", "produse.csv");
+    rename("produsenew.csv", "produse_ro.csv");
 }
 
 /*
@@ -817,6 +838,22 @@ int main()
     }
 
     cout << "Bine ati venit in meniul de plasare a unei comenzi!" << endl;
+    cout << "Selectati limba: " << endl;
+    cout << "1. Romana" << endl;
+    cout << "2. Engleza" << endl;
+
+    int nr_limba;
+    cin >> nr_limba;
+    string limba;
+    if (nr_limba == 1)
+    {
+        limba = "Romana";
+    }
+    else
+    {
+        limba = "Engleza";
+    }
+
     cout << "Selectati orasul in care va aflati: " << endl;
     cout << "1. Bucuresti" << endl;
     cout << "2. Cluj-Napoca" << endl;
@@ -842,217 +879,437 @@ int main()
 
     vector<string> comanda;
 
-    cout << "\n---- CAFENEA " << orase[nr_oras - 1] << " ----" << endl;
-    cout << "Ce doriti sa comandati?" << endl;
-    cout << "1. Cafea" << endl;
-    cout << "2. Ciocolata calda" << endl;
-    cout << "3. Ceai" << endl;
-    cout << "4. Limonada" << endl;
-    cout << "5. Desert" << endl;
-    cout << "6. Sandwich" << endl;
-
-    int tip_comanda;
-    cin >> tip_comanda;
-
-    int pret_inainte_comanda = 0;
-    int pret_total = 0;
-    float pret_total_redus = 0;
-
-    while (tip_comanda != 7)
+    if (limba == "Romana")
     {
-        int ID, cantitate;
-        string MARIME;
-
-        if (tip_comanda == 1)
-        {
-            cout << "\n---- MENIU CAFEA ----" << endl;
-            showMenu("Cafea");
-            cout << endl;
-            cout << "Ce cafea doriti sa comandati?" << endl;
-            cout << "ID: ";
-            cin >> ID;
-            cout << "Marime: ";
-            cin >> MARIME;
-            cout << "Cantitate: ";
-            cin >> cantitate;
-
-            cout << endl;
-            pret_total += plasareComanda("Cafea", ID, MARIME, cantitate);
-            comanda.push_back(plasareProdus("Cafea", ID, MARIME, cantitate));
-
-            if (pret_total != pret_inainte_comanda)
-            {
-                modificareStoc("Cafea", ID, MARIME, cantitate);
-                pret_inainte_comanda = pret_total;
-            }
-        }
-        else if (tip_comanda == 2)
-        {
-            cout << "\n---- MENIU CIOCOLATA CALDA ----" << endl;
-            showMenu("Ciocolata Calda");
-            cout << endl;
-            cout << "Ce ciocolata calda doriti sa comandati?" << endl;
-            cout << "ID: ";
-            cin >> ID;
-            cout << "Marime: ";
-            cin >> MARIME;
-            cout << "Cantitate: ";
-            cin >> cantitate;
-
-            cout << endl;
-            pret_total += plasareComanda("Ciocolata Calda", ID, MARIME, cantitate);
-            comanda.push_back(plasareProdus("Ciocolata Calda", ID, MARIME, cantitate));
-
-            if (pret_total != pret_inainte_comanda)
-            {
-                modificareStoc("Ciocolata Calda", ID, MARIME, cantitate);
-                pret_inainte_comanda = pret_total;
-            }
-        }
-        else if (tip_comanda == 3)
-        {
-            cout << "\n---- MENIU CEAI ----" << endl;
-            showMenu("Ceai");
-            cout << endl;
-            cout << "Ce ceai doriti sa comandati?" << endl;
-            cout << "ID: ";
-            cin >> ID;
-            cout << "Marime: ";
-            cin >> MARIME;
-            cout << "Cantitate: ";
-            cin >> cantitate;
-
-            cout << endl;
-            pret_total += plasareComanda("Ceai", ID, MARIME, cantitate);
-            comanda.push_back(plasareProdus("Ceai", ID, MARIME, cantitate));
-
-            if (pret_total != pret_inainte_comanda)
-            {
-                modificareStoc("Ceai", ID, MARIME, cantitate);
-                pret_inainte_comanda = pret_total;
-            }
-        }
-        else if (tip_comanda == 4)
-        {
-            cout << "\n---- MENIU LIMONADA ----" << endl;
-            showMenu("Limonada");
-            cout << endl;
-            cout << "Ce limonada doriti sa comandati?" << endl;
-            cout << "ID: ";
-            cin >> ID;
-            cout << "Marime: ";
-            cin >> MARIME;
-            cout << "Cantitate: ";
-            cin >> cantitate;
-
-            cout << endl;
-            pret_total += plasareComanda("Limonada", ID, MARIME, cantitate);
-            comanda.push_back(plasareProdus("Limonada", ID, MARIME, cantitate));
-
-            if (pret_total != pret_inainte_comanda)
-            {
-                modificareStoc("Limonada", ID, MARIME, cantitate);
-                pret_inainte_comanda = pret_total;
-            }
-        }
-        else if (tip_comanda == 5)
-        {
-            cout << "\n---- MENIU DESERT ----" << endl;
-            showMenu("Desert");
-            cout << endl;
-            cout << "Ce desert doriti sa comandati?" << endl;
-            cout << "ID: ";
-            cin >> ID;
-            cout << "Marime: ";
-            cin >> MARIME;
-            cout << "Cantitate: ";
-            cin >> cantitate;
-
-            cout << endl;
-            pret_total += plasareComanda("Desert", ID, MARIME, cantitate);
-            comanda.push_back(plasareProdus("Desert", ID, MARIME, cantitate));
-
-            if (pret_total != pret_inainte_comanda)
-            {
-                modificareStoc("Desert", ID, MARIME, cantitate);
-                pret_inainte_comanda = pret_total;
-            }
-        }
-        else
-        {
-            cout << "\n---- MENIU SANDWICH ----" << endl;
-            showMenu("Sandwich");
-            cout << endl;
-            cout << "Ce sandwich doriti sa comandati?" << endl;
-            cout << "ID: ";
-            cin >> ID;
-            cout << "Marime: ";
-            cin >> MARIME;
-            cout << "Cantitate: ";
-            cin >> cantitate;
-
-            cout << endl;
-            pret_total += plasareComanda("Sandwich", ID, MARIME, cantitate);
-            comanda.push_back(plasareProdus("Sandwich", ID, MARIME, cantitate));
-
-            if (pret_total != pret_inainte_comanda)
-            {
-                modificareStoc("Sandwich", ID, MARIME, cantitate);
-                pret_inainte_comanda = pret_total;
-            }
-        }
-
-        if (nr_comenzi < 5)
-        {
-            pret_total_redus = pret_total;
-            // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
-        }
-        else if (nr_comenzi >= 5 && nr_comenzi < 10)
-        {
-            pret_total_redus = pret_total - pret_total * 0.05;
-            // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
-        }
-        else if (nr_comenzi >= 10 && nr_comenzi < 20)
-        {
-            pret_total_redus = pret_total - pret_total * 0.075;
-            // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
-        }
-        else if (nr_comenzi >= 20)
-        {
-            pret_total_redus = pret_total - pret_total * 0.1;
-            // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
-        }
-
-        if (nr_comenzi == 50)
-        {
-            cout << "Felicitari!" << endl;
-            cout << "In semn de recunostinta pentru ca ne-ati fost alaturi si ati efectuat 50 de comenzi in cafeneaua noastra, va oferim comanda gratis!" << endl;
-            cout << "\nPRET COMANDA: 0 lei" << endl;
-        }
-
-        cout << endl;
-        cout << "\nCe doriti sa mai comandati?" << endl;
+        cout << "\n---- CAFENEA " << orase[nr_oras - 1] << " ----" << endl;
+        cout << "Ce doriti sa comandati?" << endl;
         cout << "1. Cafea" << endl;
         cout << "2. Ciocolata calda" << endl;
         cout << "3. Ceai" << endl;
         cout << "4. Limonada" << endl;
         cout << "5. Desert" << endl;
         cout << "6. Sandwich" << endl;
-        cout << "7. Nimic altceva" << endl;
 
+        int tip_comanda;
         cin >> tip_comanda;
-    }
 
-    cout << "\nComanda dumneavoastra: " << endl;
-    for (int i = 0; i < comanda.size(); i++)
+        int pret_inainte_comanda = 0;
+        int pret_total = 0;
+        float pret_total_redus = 0;
+
+        while (tip_comanda != 7)
+        {
+            int ID, cantitate;
+            string MARIME;
+
+            if (tip_comanda == 1)
+            {
+                cout << "\n---- MENIU CAFEA ----" << endl;
+                showMenu("Cafea", limba);
+                cout << endl;
+                cout << "Ce cafea doriti sa comandati?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Marime: ";
+                cin >> MARIME;
+                cout << "Cantitate: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Cafea", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Cafea", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Cafea", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 2)
+            {
+                cout << "\n---- MENIU CIOCOLATA CALDA ----" << endl;
+                showMenu("Ciocolata Calda", limba);
+                cout << endl;
+                cout << "Ce ciocolata calda doriti sa comandati?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Marime: ";
+                cin >> MARIME;
+                cout << "Cantitate: ";
+                cin >> cantitate;
+
+                cout << endl;
+
+                pret_total += plasareComanda(limba, "Ciocolata Calda", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Ciocolata Calda", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Ciocolata Calda", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 3)
+            {
+                cout << "\n---- MENIU CEAI ----" << endl;
+                showMenu("Ceai", limba);
+                cout << endl;
+                cout << "Ce ceai doriti sa comandati?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Marime: ";
+                cin >> MARIME;
+                cout << "Cantitate: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Ceai", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Ceai", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Ceai", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 4)
+            {
+                cout << "\n---- MENIU LIMONADA ----" << endl;
+                showMenu("Limonada", limba);
+                cout << endl;
+                cout << "Ce limonada doriti sa comandati?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Marime: ";
+                cin >> MARIME;
+                cout << "Cantitate: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Limonada", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Limonada", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Limonada", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 5)
+            {
+                cout << "\n---- MENIU DESERT ----" << endl;
+                showMenu("Desert", limba);
+                cout << endl;
+                cout << "Ce desert doriti sa comandati?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Marime: ";
+                cin >> MARIME;
+                cout << "Cantitate: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Desert", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Desert", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Desert", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else
+            {
+                cout << "\n---- MENIU SANDWICH ----" << endl;
+                showMenu("Sandwich", limba);
+                cout << endl;
+                cout << "Ce sandwich doriti sa comandati?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Marime: ";
+                cin >> MARIME;
+                cout << "Cantitate: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Sandwich", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Sandwich", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Sandwich", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+
+            if (nr_comenzi < 5)
+            {
+                pret_total_redus = pret_total;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+            else if (nr_comenzi >= 5 && nr_comenzi < 10)
+            {
+                pret_total_redus = pret_total - pret_total * 0.05;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+            else if (nr_comenzi >= 10 && nr_comenzi < 20)
+            {
+                pret_total_redus = pret_total - pret_total * 0.075;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+            else if (nr_comenzi >= 20)
+            {
+                pret_total_redus = pret_total - pret_total * 0.1;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+
+            if (nr_comenzi == 50)
+            {
+                cout << "Felicitari!" << endl;
+                cout << "In semn de recunostinta pentru ca ne-ati fost alaturi si ati efectuat 50 de comenzi in cafeneaua noastra, va oferim comanda gratis!" << endl;
+                cout << "\nPRET COMANDA: 0 lei" << endl;
+            }
+
+            cout << endl;
+            cout << "\nCe doriti sa mai comandati?" << endl;
+            cout << "1. Cafea" << endl;
+            cout << "2. Ciocolata calda" << endl;
+            cout << "3. Ceai" << endl;
+            cout << "4. Limonada" << endl;
+            cout << "5. Desert" << endl;
+            cout << "6. Sandwich" << endl;
+            cout << "7. Nimic altceva" << endl;
+
+            cin >> tip_comanda;
+        }
+
+        cout << "\nComanda dumneavoastra: " << endl;
+        for (int i = 0; i < comanda.size(); i++)
+        {
+            cout << comanda[i] << endl;
+        }
+        cout << "Pret: " << pret_total_redus << " lei" << endl;
+        cout << "\nMultumim ca ati ales cafeneaua noastra! O zi buna in continuare" << endl;
+
+        client.adaugaClientSiComandaInCSV(comanda, pret_total_redus);
+
+        adaugareVenitCheltuieliProfituri(data, orase[nr_oras - 1], pret_total_redus, pret_total / 2);
+    }
+    else
     {
-        cout << comanda[i] << endl;
+        cout << "\n---- COFFEE SHOP " << orase[nr_oras - 1] << " ----" << endl;
+        cout << "What would you like to order?" << endl;
+        cout << "1. Coffee" << endl;
+        cout << "2. Hot Chocolate" << endl;
+        cout << "3. Tea" << endl;
+        cout << "4. Lemonade" << endl;
+        cout << "5. Dessert" << endl;
+        cout << "6. Sandwich" << endl;
+
+        int tip_comanda;
+        cin >> tip_comanda;
+
+        int pret_inainte_comanda = 0;
+        int pret_total = 0;
+        float pret_total_redus = 0;
+
+        while (tip_comanda != 7)
+        {
+            int ID, cantitate;
+            string MARIME;
+
+            if (tip_comanda == 1)
+            {
+                cout << "\n---- COFFEE MENU ----" << endl;
+                showMenu("Coffee", limba);
+                cout << endl;
+                cout << "What coffee would you like to order?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Size: ";
+                cin >> MARIME;
+                cout << "Quantity: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Coffee", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Coffee", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Cafea", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 2)
+            {
+                cout << "\n---- HOT CHOCOLATE MENU ----" << endl;
+                showMenu("Hot Chocolate", limba);
+                cout << endl;
+                cout << "What hot chocolate would you like to order?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Size: ";
+                cin >> MARIME;
+                cout << "Quantity: ";
+                cin >> cantitate;
+
+                cout << endl;
+
+                pret_total += plasareComanda(limba, "Hot Chocolate", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Hot Chocolate", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Ciocolata Calda", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 3)
+            {
+                cout << "\n---- TEA MENU ----" << endl;
+                showMenu(limba, "Tea");
+                cout << endl;
+                cout << "What tea would you like to order?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Size: ";
+                cin >> MARIME;
+                cout << "Quantity: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Tea", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Tea", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Ceai", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 4)
+            {
+                cout << "\n---- LEMONADE MENU ----" << endl;
+                showMenu("Lemonade", limba);
+                cout << endl;
+                cout << "What lemonade would you like to order?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Size: ";
+                cin >> MARIME;
+                cout << "Quantity: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Lemonade", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Lemonade", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Limonada", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else if (tip_comanda == 5)
+            {
+                cout << "\n---- DESSERT MENU ----" << endl;
+                showMenu("Dessert", limba);
+                cout << endl;
+                cout << "What dessert would you like to order?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Size: ";
+                cin >> MARIME;
+                cout << "Quantity: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Dessert", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Dessert", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Desert", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+            else
+            {
+                cout << "\n---- SANDWICH MENU ----" << endl;
+                showMenu("Sandwich", limba);
+                cout << endl;
+                cout << "What sandwich would you like to order?" << endl;
+                cout << "ID: ";
+                cin >> ID;
+                cout << "Size: ";
+                cin >> MARIME;
+                cout << "Quantity: ";
+                cin >> cantitate;
+
+                cout << endl;
+                pret_total += plasareComanda(limba, "Sandwich", ID, MARIME, cantitate);
+                comanda.push_back(plasareProdus(limba, "Sandwich", ID, MARIME, cantitate));
+
+                if (pret_total != pret_inainte_comanda)
+                {
+                    modificareStoc("Sandwich", ID, MARIME, cantitate);
+                    pret_inainte_comanda = pret_total;
+                }
+            }
+
+            if (nr_comenzi < 5)
+            {
+                pret_total_redus = pret_total;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+            else if (nr_comenzi >= 5 && nr_comenzi < 10)
+            {
+                pret_total_redus = pret_total - pret_total * 0.05;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+            else if (nr_comenzi >= 10 && nr_comenzi < 20)
+            {
+                pret_total_redus = pret_total - pret_total * 0.075;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+            else if (nr_comenzi >= 20)
+            {
+                pret_total_redus = pret_total - pret_total * 0.1;
+                // cout << "\nPRET COMANDA: " << pret_total_redus << " lei" << endl;
+            }
+
+            if (nr_comenzi == 50)
+            {
+                cout << "Congratulations!" << endl;
+                cout << "As a token of appreciation for placing 50 orders in our coffee shop, we offer you a free order!" << endl;
+                cout << "\nORDER PRICE: 0 RON" << endl;
+            }
+
+            cout << endl;
+            cout << "\nWhat else would you like to order?" << endl;
+            cout << "1. Coffee" << endl;
+            cout << "2. Hot Chocolate" << endl;
+            cout << "3. Tea" << endl;
+            cout << "4. Lemonade" << endl;
+            cout << "5. Dessert" << endl;
+            cout << "6. Sandwich" << endl;
+            cout << "7. Nothing else" << endl;
+
+            cin >> tip_comanda;
+        }
+
+        cout << "\nYour order: " << endl;
+        for (int i = 0; i < comanda.size(); i++)
+        {
+            cout << comanda[i] << endl;
+        }
+        cout << "Price: " << pret_total_redus << " lei" << endl;
+        cout << "\nThank you for choosing our coffee shop! Have a great day!" << endl;
+
+        client.adaugaClientSiComandaInCSV(comanda, pret_total_redus);
+
+        adaugareVenitCheltuieliProfituri(data, orase[nr_oras - 1], pret_total_redus, pret_total / 2);
     }
-    cout << "Pret: " << pret_total_redus << " lei" << endl;
-    cout << "\nMultumim ca ati ales cafeneaua noastra! O zi buna in continuare" << endl;
-
-    client.adaugaClientSiComandaInCSV(comanda, pret_total_redus);
-
-    adaugareVenitCheltuieliProfituri(data, orase[nr_oras - 1], pret_total_redus, pret_total / 2);
     return 0;
 }
