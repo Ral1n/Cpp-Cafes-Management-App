@@ -378,10 +378,9 @@ void statusAngajati(string oras)
     fin.open("angajati.csv", ios::in);
 
     string oras_cafenea, functie;
-    int start_tura;
     int count_manager = 0;
-    int count_barista_tura1 = 0, count_ospatar_tura1 = 0;
-    int count_barista_tura2 = 0, count_ospatar_tura2 = 0;
+    int count_barista = 0;
+    int count_ospatar = 0;
 
     vector<string> row;
     string line, word, temp;
@@ -401,7 +400,6 @@ void statusAngajati(string oras)
 
         oras_cafenea = row[6];
         functie = row[5];
-        start_tura = stoi(row[8]);
 
         if (oras_cafenea == oras)
         {
@@ -409,68 +407,42 @@ void statusAngajati(string oras)
             {
                 count_manager++;
             }
-            else if (functie == "Barista" && start_tura == 9)
+            else if (functie == "Barista")
             {
-                count_barista_tura1++;
+                count_barista++;
             }
-            else if (functie == "Barista" && start_tura == 13)
+            else if (functie == "Ospatar")
             {
-                count_barista_tura2++;
-            }
-            else if (functie == "Ospatar" && start_tura == 9)
-            {
-                count_ospatar_tura1++;
-            }
-            else
-            {
-                count_ospatar_tura2++;
+                count_ospatar++;
             }
         }
     }
 
-    if (count_manager < 2)
+    if (count_manager == 0)
     {
-        cout << "Cafeneaua are nevoie de " << 2 - count_manager << " manageri!!!" << endl;
+        cout << "!!! Cafeneaua are nevoie de manager !!!" << endl;
     }
     else
     {
-        cout << "Cafeneaua are 2 manageri." << endl;
+        cout << "Cafeneaua are 1 manager." << endl;
     }
 
-    if (count_barista_tura1 < 2)
+    if (count_barista < 4)
     {
-        cout << "Cafeneaua are nevoie de " << 2 - count_barista_tura1 << " barista in intervalul orar 9:00-13:00!!!" << endl;
+        cout << "!!! Cafeneaua are nevoie de " << 4 - count_barista << " barista !!!" << endl;
     }
     else
     {
-        cout << "Cafeneaua are 2 barista in intervalul orar 9:00-13:00" << endl;
+        cout << "Cafeneaua are 4 barista." << endl;
     }
 
-    if (count_barista_tura2 < 2)
+    if (count_ospatar < 2)
     {
-        cout << "Cafeneaua are nevoie de " << 2 - count_barista_tura2 << " barista in intervalul orar 13:00-17:00!!!" << endl;
+        cout << "!!! Cafeneaua are nevoie de " << 2 - count_ospatar << " ospatari !!!" << endl;
     }
     else
     {
-        cout << "Cafeneaua are 2 barista in intervalul orar 13:00-17:00" << endl;
-    }
-
-    if (count_ospatar_tura1 < 2)
-    {
-        cout << "Cafeneaua are nevoie de " << 2 - count_ospatar_tura1 << " ospatari in intervalul orar 9:00-13:00!!!" << endl;
-    }
-    else
-    {
-        cout << "Cafeneaua are 2 ospatari in intervalul orar 9:00-13:00" << endl;
-    }
-
-    if (count_ospatar_tura2 < 2)
-    {
-        cout << "Cafeneaua are nevoie de " << 2 - count_ospatar_tura2 << " ospatari in intervalul orar 13:00-17:00!!!" << endl;
-    }
-    else
-    {
-        cout << "Cafeneaua are 2 ospatari in intervalul orar 13:00-17:00" << endl;
+        cout << "Cafeneaua are 2 ospatari." << endl;
     }
 
     fin.close();
