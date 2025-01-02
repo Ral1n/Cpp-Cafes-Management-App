@@ -537,7 +537,7 @@ int main()
             cout << "Ora de sfarsire a turei: ";
             cin >> stop_tura;
             cout << "Zilele de lucru: ";
-            getline(cin, zile_tura);
+            getline(cin >> ws, zile_tura);
             cout << "Task zilnic: ";
             cin >> task;
 
