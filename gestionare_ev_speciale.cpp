@@ -121,7 +121,7 @@ public:
 */
 int main()
 {
-    cout << "--- ORGANIZARE EVENIMENTE SPECIALE ---" << endl;
+    cout << "---- ORGANIZARE EVENIMENTE SPECIALE ----" << endl;
     cout << "Bun venit in meniul de organizare a unui eveniment special!" << endl;
     cout << "Din ce oras este cafeneaua dumneavoastra?" << endl;
     cout << "1. Bucuresti" << endl;

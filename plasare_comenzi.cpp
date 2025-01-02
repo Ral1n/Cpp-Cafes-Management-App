@@ -412,6 +412,7 @@ string plasareProdus(string limba, string TIP, int ID, string MARIME, int cantit
     };
 
     fin.close();
+    return 0;
 }
 
 void modificareStoc(string TIP, int ID, string MARIME, int cantitate)
