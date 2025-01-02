@@ -494,7 +494,7 @@ int main()
     cout << "-------------------------\n"
          << endl;
 
-    cout << "Ce doriti sa faceti?" << endl;
+    cout << "\nCe doriti sa faceti?" << endl;
     cout << "1. Adaugare angajat in sistem" << endl;
     cout << "2. Stergere angajat din sistem" << endl;
     cout << "3. Iesire" << endl;
@@ -509,7 +509,7 @@ int main()
             string nume, prenume, sex, zile_tura, task;
             int varsta, experienta, salariu, start_tura, stop_tura;
 
-            cout << "Ati accesat meniul de adaugare a unui angajat in sistem." << endl;
+            cout << "\nAti accesat meniul de adaugare a unui angajat in sistem." << endl;
             cout << "Ce functie va ocupa angajatul?" << endl;
             cout << "1. Manager" << endl;
             cout << "2. Barista" << endl;
@@ -546,25 +546,28 @@ int main()
                 AngajatFactory *managerFactory = new ManagerFactory();
                 Angajat *manager = managerFactory->createManager(nume, prenume, varsta, sex, experienta, salariu, start_tura, stop_tura, zile_tura, task);
                 manager->adaugaAngajat(orase[nr_oras - 1]);
+                cout << "Managerul " << manager->getNume() << " " << manager->getPrenume() << " a fost adaugat cu succes in baza de date!" << endl;
             }
             else if (tip_angajat == 2)
             {
                 AngajatFactory *baristaFactory = new BaristaFactory();
                 Angajat *barista = baristaFactory->createBarista(nume, prenume, varsta, sex, experienta, salariu, start_tura, stop_tura, zile_tura, task);
                 barista->adaugaAngajat(orase[nr_oras - 1]);
+                cout << "Baristaul " << barista->getNume() << " " << barista->getPrenume() << " a fost adaugat cu succes in baza de date!" << endl;
             }
             else
             {
                 AngajatFactory *ospatarFactory = new OspatarFactory();
                 Angajat *ospatar = ospatarFactory->createOspatar(nume, prenume, varsta, sex, experienta, salariu, start_tura, stop_tura, zile_tura, task);
                 ospatar->adaugaAngajat(orase[nr_oras - 1]);
+                cout << "Ospatarul " << ospatar->getNume() << " " << ospatar->getPrenume() << " a fost adaugat cu succes in baza de date!" << endl;
             }
         }
         else if (actiune == 2)
         {
             string nume, prenume;
 
-            cout << "Ati accesat meniul de stergere a unui angajat din sistem." << endl;
+            cout << "\nAti accesat meniul de stergere a unui angajat din sistem." << endl;
             cout << "Ce functie ocupa angajatul?" << endl;
             cout << "1. Manager" << endl;
             cout << "2. Barista" << endl;
@@ -580,9 +583,11 @@ int main()
             cin >> prenume;
 
             stergeAngajat(nume, prenume);
+
+            cout << "Angajatul " << nume << " " << prenume << " a fost sters cu succes din baza de date!" << endl;
         }
 
-        cout << "Ce doriti sa faceti?" << endl;
+        cout << "\nCe doriti sa faceti?" << endl;
         cout << "1. Adaugare angajat in sistem" << endl;
         cout << "2. Stergere angajat din sistem" << endl;
         cout << "3. Iesire" << endl;
