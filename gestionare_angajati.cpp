@@ -369,6 +369,17 @@ class OspatarFactory : public AngajatFactory
     }
 };
 
+/*
+----------------
+    TEMPLATE
+----------------
+*/
+template <class C>
+void calcSalariuPeOra(C angajat, int salariu)
+{
+    cout << "Angajatul " << angajat->getNume() << " " << angajat->getPrenume() << " castiga " << salariu / 140 << " lei pe ora." << endl;
+}
+
 // Functie prin care se afiseaza statusului angajatilor fiecarei cafenele din tara
 // Cati angajati lipsa are cafeneaua conform schemei prezentate mai jos
 void statusAngajati(string oras)
@@ -554,6 +565,7 @@ int main()
                 Angajat *barista = baristaFactory->createBarista(nume, prenume, varsta, sex, experienta, salariu, start_tura, stop_tura, zile_tura, task);
                 barista->adaugaAngajat(orase[nr_oras - 1]);
                 cout << "Baristaul " << barista->getNume() << " " << barista->getPrenume() << " a fost adaugat cu succes in baza de date!" << endl;
+                calcSalariuPeOra(barista, 4900);
             }
             else
             {
@@ -561,6 +573,7 @@ int main()
                 Angajat *ospatar = ospatarFactory->createOspatar(nume, prenume, varsta, sex, experienta, salariu, start_tura, stop_tura, zile_tura, task);
                 ospatar->adaugaAngajat(orase[nr_oras - 1]);
                 cout << "Ospatarul " << ospatar->getNume() << " " << ospatar->getPrenume() << " a fost adaugat cu succes in baza de date!" << endl;
+                calcSalariuPeOra(ospatar, 3640);
             }
         }
         else if (actiune == 2)
